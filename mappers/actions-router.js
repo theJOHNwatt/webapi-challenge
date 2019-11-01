@@ -23,4 +23,30 @@ router.get('/:id', (req, res) => {
     });
 })
 
+router.post('/:id', (req, res) => {
+    Model.insert(req.body)
+      .then(mappers => {
+        res.status(201).json(mappers);
+      })
+      .catch(err => {
+        
+        res.status(500).json({
+          message: 'Error adding the action',
+        });
+      });
+  });
+
+  router.put('/:id', (req, res) => {
+    Model.update(req.params.id, req.body)
+      .then(mappers => {
+          res.status(200).json(mappers);
+      })
+      .catch(err => {
+        res.status(500).json({
+          message: 'Error updating the action',
+        });
+      });
+  });
+
+
 module.exports = router;
