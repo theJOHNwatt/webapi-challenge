@@ -64,7 +64,15 @@ router.post('/', (req, res) => {
       });
   });
 
-
+  router.get('/project-actions/:id', (req, res) => {
+    Model.getProjectActions(req.params.id)
+    .then(mappers => {
+        res.status(200).json(mappers);
+    })
+    .catch(err => {
+        res.status(500).json({message:'Could not retrieve data'});
+    });
+})
 
 
 
