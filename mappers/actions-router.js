@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
+    const action = req.body;
     Model.get(req.params.id)
     .then(mappers => {
         res.status(200).json(mappers);
@@ -36,7 +37,8 @@ router.post('/', (req, res) => {
       });
   });
 
-  router.put('/:id', (req, res) => {
+  router.put('/', (req, res) => {
+    
     Model.update(req.params.id, req.body)
       .then(mappers => {
           res.status(200).json(mappers);
