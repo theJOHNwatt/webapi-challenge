@@ -48,6 +48,22 @@ router.post('/', (req, res) => {
       });
   });
 
+  router.delete('/:id', (req, res) => {
+    Model.remove(req.params.id)
+      .then(count => {
+        if (count > 0) {
+          res.status(200).json(count);
+        } else {
+          res.status(404).json({ message: 'The project could not be found' });
+        }
+      })
+      .catch(err => {
+        res.status(500).json({
+          message: 'Error removing the project',
+        });
+      });
+  });
+
 
 
 
